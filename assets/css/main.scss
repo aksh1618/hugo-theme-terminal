@@ -344,3 +344,15 @@ hr {
 sup {
  line-height: 0;
 }
+
+.accented-text {
+  color: $accent;
+}
+
+.post-cover {
+  max-height: 40vh;
+  width: auto; /* To maintain aspect ratio */
+  display: block; /* To enable margin auto and prevent extra space */
+  margin-left: auto; /* To center if width is constrained by max-height */
+  margin-right: auto; /* To center if width is constrained by max-height */
+}

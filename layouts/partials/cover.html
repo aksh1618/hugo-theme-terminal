@@ -19,7 +19,7 @@
   <!-- Cover image found -->
   <img src="{{ $cover }}"
     class="post-cover"
-    alt="{{ .Params.coveralt | plainify | default " " }}"
+    alt="{{ .Params.coveralt | plainify | default .Title }}"
     style="max-height: {{ .Params.coverMaxHeight | default "50vh" }}; width: auto;"
     title="{{ .Params.CoverCredit |plainify|default "Cover Image" }}" />
 {{- end }}

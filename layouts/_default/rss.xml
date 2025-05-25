@@ -31,10 +31,10 @@
 {{- $pages = $pages | first $limit }}
 {{- end }}
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>{{ if eq .Title .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{ . }} on {{ end }}{{ .Site.Title }}{{ end }}</title>
-    <link>{{ .Permalink }}</link>
+    <link>{{ .Permalink | absURL }}</link>
     <description>Recent content {{ if ne .Title .Site.Title }}{{ with .Title }}in {{ . }} {{ end }}{{ end }}on {{ .Site.Title }}</description>
     <generator>Hugo</generator>
     <language>{{ site.Language.LanguageCode }}</language>{{ with $authorEmail }}
@@ -48,13 +48,12 @@
     {{- range $pages }}
     <item>
       <title>{{ .Title }}</title>
-      <link>{{ .Permalink }}</link>
+      <link>{{ .Permalink | absURL }}</link>
       <pubDate>{{ .PublishDate.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
       {{- with $authorEmail }}<author>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</author>{{ end }}
-      <guid>{{ .Permalink }}</guid>
-      <!-- uncomment this & use content:encoded for the full content if summary is required in the feed for some reason -->
-      <!-- <description>{{ .Summary | transform.XMLEscape | safeHTML }}</description> -->
-      <description>{{ "<![CDATA[" | safeHTML }}{{ .Content | transform.XMLEscape | safeHTML }}{{ "]]>" | safeHTML }}</description>
+      <guid>{{ .Permalink | absURL }}</guid>
+      <description>{{ .Summary | transform.XMLEscape | safeHTML }}</description>
+      <content:encoded>{{ "<![CDATA[" | safeHTML }}{{ .Content | safeHTML }}{{ "]]>" | safeHTML }}</content:encoded>
     </item>
     {{- end }}
   </channel>

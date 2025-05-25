@@ -4,7 +4,7 @@
       {{ range first $.Site.Params.showMenuItems $.Site.Menus.main }}
         {{ if not .HasChildren }}
           <li>
-            <a {{ with .Params.rel }}rel="{{ . }}"{{ end }} href="{{ .URL }}" {{ if .Params.NewTab -}} target="_blank" {{- end }}>
+            <a {{ with .Rel }} rel="{{ . }}"{{ end }} href="{{ .URL }}" {{ if .Params.NewTab -}} target="_blank" {{- end }}>
             {{ .Name }}
             </a>
           </li>
@@ -19,7 +19,7 @@
                 {{ range last (sub (len $.Site.Menus.main) $.Site.Params.showMenuItems) $.Site.Menus.main }}
                   {{ if not .HasChildren }}
                     <li>
-                      <a {{ with .Params.rel }}rel="{{ . }}"{{ end }} href="{{ .URL }}" {{ if .Params.NewTab -}} target="_blank" {{- end }}>
+                      <a {{ with .Rel }} rel="{{ . }}"{{ end }} href="{{ .URL }}" {{ if .Params.NewTab -}} target="_blank" {{- end }}>
                       {{ .Name }}
                       </a>
                     </li>
@@ -34,7 +34,7 @@
       {{ range $.Site.Menus.main }}
         {{ if not .HasChildren }}
           <li>
-            <a {{ with .Params.rel }}rel="{{ . }}"{{ end }} href="{{ .URL }}" {{ if .Params.NewTab -}} target="_blank" {{- end }}>
+            <a {{ with .Rel }} rel="{{ . }}"{{ end }} href="{{ .URL }}" {{ if .Params.NewTab -}} target="_blank" {{- end }}>
             {{ .Name }}
             </a>
           </li>

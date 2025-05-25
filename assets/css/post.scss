@@ -131,6 +131,40 @@ h1:hover a, h2:hover a, h3:hover a, h4:hover a {
   visibility: visible;
 }
 
-.footnotes,.footnote-ref {
-  color: transparentize($color, .5);
+.footnotes {
+  color: transparentize($color, .5); // Base color for footnote text
+  font-size: 0.9em; // Slightly smaller text for footnotes
+  line-height: 1.6;
+
+  a, a:visited {
+    color: inherit; // Links within footnotes inherit the footnote text color
+    text-decoration: underline; // Ensure links are identifiable
+  }
+
+  // Style for the horizontal rule above footnotes
+  hr {
+    border-top: 1px solid transparentize($color, 0.8);
+    margin-top: 2em;
+    margin-bottom: 1em;
+  }
+}
+
+.footnote-ref {
+  // This is for the [1] style links in the main content
+  a, a:visited {
+    color: inherit; // Inherit color from surrounding text
+    text-decoration: none; // Typically no underline for these
+    font-size: 0.85em;
+    vertical-align: super;
+    position: relative;
+    top: -0.5em; // Adjust position to look like a superscript
+  }
+}
+
+.footnote-return {
+  // This is for the back-arrow link (e.g., ↩)
+  a, a:visited {
+    color: inherit; // Inherit color from .footnotes
+    text-decoration: none;
+  }
 }
