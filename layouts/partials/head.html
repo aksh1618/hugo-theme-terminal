@@ -53,6 +53,9 @@
     {{ $pageCover = .RelPermalink }}
   {{ end }}
   <meta property="og:image" content="{{ $pageCover | absURL }}">
+{{ else if (isset .Params "autocover") }}
+  {{ $pageAutoCover := (.Resources.GetMatch "cover.*").RelPermalink }}
+  <meta property="og:image" content="{{ $pageAutoCover | absURL }}">
 {{ else }}
   <meta property="og:image" content="{{ "og-image.png" | absURL }}">
 {{ end }}
